@@ -16,12 +16,23 @@ end
 -- See the README of the selected color scheme for the instruction
 -- to use.
 -- e.g.: require('color_scheme').setup{}, vim.cmd('color_scheme') ...
-require('onedark').setup {
-  -- styles: dark, darker, cool, deep, warm, warmer, light
-  style = 'darker',
-  colors = { fg = '#b2bbcc' }, --default: #a0a8b7
-}
-require('onedark').load()
+-- require('onedark').setup {
+--   -- styles: dark, darker, cool, deep, warm, warmer, light
+--   style = 'darker',
+--   colors = { fg = '#b2bbcc' }, --default: #a0a8b7
+-- }
+-- require('onedark').load()
+
+-- Lua:
+vim.cmd[[colorscheme dracula]]
+
+-- vim.cmd([[autocmd! ColorScheme * highlight NormalFloat bg=#2b3339 guibg=#2b3339]])
+-- vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=#d3c6aa guibg=#2b3339]])
+
+-- vim.cmd("vim.api.nvim_set_hl(0, “FloatBorder”, {bg=“#3B4252”, fg=“#5E81AC”})")
+-- vim.cmd("vim.api.nvim_set_hl(0, “NormalFloat”, {bg=“#3B4252”})")
+-- vim.cmd("vim.api.nvim_set_hl(0, “TelescopeNormal”, {bg=“#3B4252”})")
+-- vim.cmd("vim.api.nvim_set_hl(0, “TelescopeBorder”, {bg=“#3B4252”})")
 
 --[[
 Statusline color schemes.

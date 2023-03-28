@@ -64,7 +64,7 @@ local on_attach = function(client, bufnr)
   end, bufopts)
   vim.keymap.set('n', 'dt', vim.lsp.buf.type_definition, bufopts)
   vim.keymap.set('n', 'dn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', 'da', vim.lsp.buf.code_action, bufopts)
+  vim.keymap.set('n', 'ca', vim.lsp.buf.code_action, bufopts)
   vim.keymap.set('n', 'dr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', 'df', function() vim.lsp.buf.format { async = true } end, bufopts)
 end

@@ -206,6 +206,19 @@ dap.configurations.javascript = {
   end
 }
 
+-- Lua
+
+use {
+  'olivercederborg/poimandres.nvim',
+  config = function()
+    require('poimandres').setup {
+      -- leave this setup function empty for default config
+      -- or refer to the configuration section
+      -- for configuration options
+    }
+  end
+}
+
 use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
@@ -215,6 +228,17 @@ use({
         })
     end
 })
+
+use {
+  "norcalli/nvim-colorizer.lua",
+  cmd = "ColorizerToggle",
+  config = function()
+    require("colorizer").setup()
+  end,
+}
+
+-- Using Packer:
+use 'Mofiqul/dracula.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
