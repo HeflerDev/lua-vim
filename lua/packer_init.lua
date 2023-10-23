@@ -87,7 +87,11 @@ return packer.startup(function(use)
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-cmdline',
       'saadparwaiz1/cmp_luasnip',
+      'ray-x/lsp_signature.nvim',
+      'onsails/lspkind-nvim',
+      {'tzachar/cmp-tabnine', run='./install.sh'}
     },
   }
 
@@ -139,7 +143,10 @@ use {
 }
 
 use {
-  'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim'
+  "lukas-reineke/indent-blankline.nvim",
+  config = function()
+    require("ibl").setup() {}
+  end
 }
 
 use {
@@ -261,6 +268,17 @@ use {
   })
 }
 
+use {
+   "dpayne/CodeGPT.nvim",
+   requires = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+   },
+   config = function()
+      require("codegpt.config")
+   end
+}
+
 -- Using Packer:
 use 'Mofiqul/dracula.nvim'
 
@@ -270,5 +288,6 @@ use 'Mofiqul/dracula.nvim'
     require('packer').sync()
   end
 end)
+
 
 

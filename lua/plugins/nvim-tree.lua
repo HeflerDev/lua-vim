@@ -14,7 +14,6 @@ end
 -- Call setup.
 -- See: `:help nvim-tree` 4. SETUP
 -- Each of these are documented in `:help nvim-tree.OPTION_NAME`
--- nested options are documented by accessing them with `.` (eg: `:help nvim-tree.view.mappings.list`)
 nvim_tree.setup {
   auto_reload_on_write = true,
   create_in_closed_folder = false,
@@ -22,9 +21,9 @@ nvim_tree.setup {
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,
-  ignore_buffer_on_setup = false,
-  open_on_setup = true,
-  open_on_setup_file = true, -- open nvim-tree when you open any file
+  -- ignore_buffer_on_setup = false,
+  -- open_on_setup = true,
+  -- open_on_setup_file = true, -- open nvim-tree when you open any file
   sort_by = "name",
   root_dirs = {},
   prefer_startup_root = false,
@@ -32,24 +31,24 @@ nvim_tree.setup {
   reload_on_bufenter = false,
   respect_buf_cwd = false,
   on_attach = "disable",
-  remove_keymaps = false,
+  -- remove_keymaps = false,
   select_prompts = false,
   view = {
     adaptive_size = false,
     centralize_selection = false,
     width = 32,
-    hide_root_folder = false,
+    -- hide_root_folder = false,
     side = "left",
     preserve_window_proportions = false,
     number = false,
     relativenumber = false,
     signcolumn = "yes",
-    mappings = {
-      custom_only = false,
-      list = {
-        -- user mappings go here
-      },
-    },
+    -- mappings = {
+    --   custom_only = false,
+    --   list = {
+    --     -- user mappings go here
+    --   },
+    -- },
     float = {
       enable = false,
       quit_on_focus_loss = true,
@@ -130,7 +129,7 @@ nvim_tree.setup {
     update_root = true,
     ignore_list = {},
   },
-  ignore_ft_on_setup = {},
+  -- ignore_ft_on_setup = {},
   system_open = {
     cmd = "",
     args = {},
