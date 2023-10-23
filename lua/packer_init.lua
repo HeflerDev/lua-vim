@@ -48,9 +48,6 @@ return packer.startup(function(use)
   -- File explorer
   use 'kyazdani42/nvim-tree.lua'
 
-  -- Indent line
-  use 'lukas-reineke/indent-blankline.nvim'
-
   -- Autopair
   use {
     'windwp/nvim-autopairs',
@@ -118,35 +115,33 @@ return packer.startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
-  -- Telescope (fuzzy finder)
-  use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
-
-  use {
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim"
-  }
+use {
+  "williamboman/mason.nvim",
+  "williamboman/mason-lspconfig.nvim",
+}
+require("mason-lspconfig").setup()
+require("mason").setup({
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗",
+    },
+  },
+})
 
   -- Todo Comments
 use {
   "folke/todo-comments.nvim",
   requires = "nvim-lua/plenary.nvim",
   config = function()
-    require("todo-comments").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
+    require("todo-comments").setup {}
   end
 }
 
 use {
-  "lukas-reineke/indent-blankline.nvim",
-  config = function()
-    require("ibl").setup() {}
-  end
+  'nvim-telescope/telescope.nvim', tag = '0.1.4',
+  requires = { {'nvim-lua/plenary.nvim'} }
 }
 
 use {
@@ -268,16 +263,7 @@ use {
   })
 }
 
-use {
-   "dpayne/CodeGPT.nvim",
-   requires = {
-      "MunifTanjim/nui.nvim",
-      "nvim-lua/plenary.nvim",
-   },
-   config = function()
-      require("codegpt.config")
-   end
-}
+use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
 -- Using Packer:
 use 'Mofiqul/dracula.nvim'
@@ -288,6 +274,8 @@ use 'Mofiqul/dracula.nvim'
     require('packer').sync()
   end
 end)
+
+
 
 
 
