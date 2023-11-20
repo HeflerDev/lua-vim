@@ -40,7 +40,7 @@ return packer.startup(function(use)
   use {
     'windwp/nvim-autopairs',
     config = function()
-      require('nvim-autopairs').setup{}
+      require('nvim-autopairs').setup {}
     end
   }
 
@@ -79,7 +79,7 @@ return packer.startup(function(use)
       'saadparwaiz1/cmp_luasnip',
       'ray-x/lsp_signature.nvim',
       'onsails/lspkind-nvim',
-      {'tzachar/cmp-tabnine', run='./install.sh'}
+      { 'tzachar/cmp-tabnine', run = './install.sh' }
     },
   }
 
@@ -94,7 +94,7 @@ return packer.startup(function(use)
     'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
     config = function()
-      require('gitsigns').setup{
+      require('gitsigns').setup {
         current_line_blame = true
       }
     end
@@ -106,155 +106,190 @@ return packer.startup(function(use)
     requires = { 'kyazdani42/nvim-web-devicons' },
   }
 
-use {
-  "williamboman/mason.nvim",
-  "williamboman/mason-lspconfig.nvim",
-}
-require("mason-lspconfig").setup()
-require("mason").setup({
-  ui = {
-    icons = {
-      package_installed = "✓",
-      package_pending = "➜",
-      package_uninstalled = "✗",
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim"
+  }
+  require("mason-lspconfig").setup()
+  require("mason").setup({
+    ensure_installed = { "lua_ls", "pyright" },
+    ui = {
+      icons = {
+        package_installed = "✓",
+        package_pending = "➜",
+        package_uninstalled = "✗",
+      },
     },
-  },
-})
+  })
 
   -- Todo Comments
-use {
-  "folke/todo-comments.nvim",
-  requires = "nvim-lua/plenary.nvim",
-  config = function()
-    require("todo-comments").setup {}
-  end
-}
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {}
+    end
+  }
 
-use {
-  'nvim-telescope/telescope.nvim', tag = '0.1.4',
-  requires = { {'nvim-lua/plenary.nvim'} }
-}
+  use {
+    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    requires = { { 'nvim-lua/plenary.nvim' } }
+  }
 
-use {
+  use {
     'numToStr/Comment.nvim',
     config = function()
-        require('Comment').setup({
-          toggler = {
-            line = '<C-c>',
-            block = '<C-b>'
-          },
-          opleader = {
-            line = '<C-c>',
-            block = '<C-b>'
-          }
-        })
+      require('Comment').setup({
+        toggler = {
+          line = '<C-c>',
+          block = '<C-b>'
+        },
+        opleader = {
+          line = '<C-c>',
+          block = '<C-b>'
+        }
+      })
     end
-}
+  }
 
-use {
-  'tpope/vim-fugitive'
-}
+  use {
+    'tpope/vim-fugitive'
+  }
 
-use {
-  "numToStr/FTerm.nvim",
-  config = function()
+  use {
+    "numToStr/FTerm.nvim",
+    config = function()
       require('FTerm').setup({
-        border = 'double',
-        dimensions  = {
+        border     = 'double',
+        dimensions = {
           height = 0.9,
           width = 0.9,
         }
       })
-  end
-}
+    end
+  }
 
-use {
-  "mfussenegger/nvim-dap",
-  config = function()
-    local dap = require('dap')
-dap.adapters.node2 = {
-  type = 'executable',
-  command = 'node',
-  args = {os.getenv('HOME') .. '/dev/microsoft/vscode-node-debug2/out/src/nodeDebug.js'},
-}
-dap.configurations.javascript = {
-  {
-    name = 'Launch',
-    type = 'node2',
-    request = 'launch',
-    program = '${file}',
-    cwd = vim.fn.getcwd(),
-    sourceMaps = true,
-    protocol = 'inspector',
-    console = 'integratedTerminal',
-  },
-  {
-    -- For this to work you need to make sure the node process is started with the `--inspect` flag.
-    name = 'Attach to process',
-    type = 'node2',
-    request = 'attach',
-    processId = require'dap.utils'.pick_process,
-  },
-}
-  end
-}
+  -- use {
+  --   "mfussenegger/nvim-dap",
+  --   config = function()
+  --     local dap = require('dap')
+  -- dap.adapters.node2 = {
+  --   type = 'executable',
+  --   command = 'node',
+  --   args = {os.getenv('HOME') .. '/dev/microsoft/vscode-node-debug2/out/src/nodeDebug.js'},
+  -- }
+  -- dap.configurations.javascript = {
+  --   {
+  --     name = 'Launch',
+  --     type = 'node2',
+  --     request = 'launch',
+  --     program = '${file}',
+  --     cwd = vim.fn.getcwd(),
+  --     sourceMaps = true,
+  --     protocol = 'inspector',
+  --     console = 'integratedTerminal',
+  --   },
+  --   {
+  --     -- For this to work you need to make sure the node process is started with the `--inspect` flag.
+  --     name = 'Attach to process',
+  --     type = 'node2',
+  --     request = 'attach',
+  --     processId = require'dap.utils'.pick_process,
+  --   },
+  -- }
+  --   end
+  -- }
 
--- Lua
+  use {
+    "mfussenegger/nvim-dap",
+  }
 
-use {
-  'olivercederborg/poimandres.nvim',
-  config = function()
-    require('poimandres').setup {
-      -- leave this setup function empty for default config
-      -- or refer to the configuration section
-      -- for configuration options
-    }
-  end
-}
+  use {
+    "mfussenegger/nvim-dap-python",
+    ft = "python",
+    dependencies = {
+      "mfussenegger/nvim-dap",
+      "rcarriga/nvim-dap-ui"
+    },
+    config = function(_, opts)
+      local path = "~/.local/share/nvim/mason/packages/debugpy/venv/bin/python"
+      require("dap-python").setup(path)
+    end
+  }
 
-use({
+  use {
+    "rcarriga/nvim-dap-ui",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      local dap, dapui = require("dap"), require("dapui")
+      dap.listeners.after.event_initialized["dapui_config"] = function()
+        dapui.open()
+      end
+      dap.listeners.before.event_terminated["dapui_config"] = function()
+        dapui.close()
+      end
+      dap.listeners.before.event_exited["dapui_config"] = function()
+        dapui.close()
+      end
+    end
+  }
+
+  -- Lua
+
+  use {
+    'olivercederborg/poimandres.nvim',
+    config = function()
+      require('poimandres').setup {
+        -- leave this setup function empty for default config
+        -- or refer to the configuration section
+        -- for configuration options
+      }
+    end
+  }
+
+  use({
     "kylechui/nvim-surround",
     tag = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
-        require("nvim-surround").setup({
-            -- Configuration here, or leave empty to use defaults
-        })
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
     end
-})
-
-use {
-  "norcalli/nvim-colorizer.lua",
-  cmd = "ColorizerToggle",
-  config = function()
-    require("colorizer").setup()
-  end,
-}
-
-use {
-  "xiyaowong/transparent.nvim",
-  config = function()
-  cmd = "TransparentEnable",
-  require("transparent").setup({
-    groups = { -- table: default groups
-      'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
-      'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
-      'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
-      'SignColumn', 'CursorLineNr', 'EndOfBuffer',
-    },
-    extra_groups = {}, -- table: additional groups that should be cleared
-    exclude_groups = {}, -- table: groups you don't want to clear
   })
-  end
-}
 
-use {
-  'kosayoda/nvim-lightbulb',
-  require("nvim-lightbulb").setup({
-    autocmd = { enabled = true }
-  })
-}
+  use {
+    "norcalli/nvim-colorizer.lua",
+    cmd = "ColorizerToggle",
+    config = function()
+      require("colorizer").setup()
+    end,
+  }
 
-use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+  use {
+    "xiyaowong/transparent.nvim",
+    config = function()
+      cmd = "TransparentEnable",
+          require("transparent").setup({
+            groups = { -- table: default groups
+              'Normal', 'NormalNC', 'Comment', 'Constant', 'Special', 'Identifier',
+              'Statement', 'PreProc', 'Type', 'Underlined', 'Todo', 'String', 'Function',
+              'Conditional', 'Repeat', 'Operator', 'Structure', 'LineNr', 'NonText',
+              'SignColumn', 'CursorLineNr', 'EndOfBuffer',
+            },
+            extra_groups = {},   -- table: additional groups that should be cleared
+            exclude_groups = {}, -- table: groups you don't want to clear
+          })
+    end
+  }
+
+  use {
+    'kosayoda/nvim-lightbulb',
+    require("nvim-lightbulb").setup({
+      autocmd = { enabled = true }
+    })
+  }
+
+  use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' }
 
 
   -- Automatically set up your configuration after cloning packer.nvim
@@ -262,10 +297,4 @@ use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
   if packer_bootstrap then
     require('packer').sync()
   end
-
 end)
-
-
-
-
-
