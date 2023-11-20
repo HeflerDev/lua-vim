@@ -24,7 +24,13 @@ end
 -- require('onedark').load()
 
 -- Lua:
-vim.cmd[[colorscheme dracula]]
+
+require('onedark').setup {
+    style = 'darker'
+}
+
+vim.o.background = "dark" -- or "light" for light mode
+vim.cmd[[colorscheme onedark]]
 
 -- vim.cmd([[autocmd! ColorScheme * highlight NormalFloat bg=#2b3339 guibg=#2b3339]])
 -- vim.cmd([[autocmd! ColorScheme * highlight FloatBorder guifg=#d3c6aa guibg=#2b3339]])

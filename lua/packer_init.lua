@@ -1,15 +1,3 @@
------------------------------------------------------------
--- Plugin manager configuration file
------------------------------------------------------------
-
--- Plugin manager: packer.nvim
--- url: https://github.com/wbthomason/packer.nvim
-
--- For information about installed plugins see the README:
--- neovim-lua/README.md
--- https://github.com/brainfucksec/neovim-lua#readme
-
-
 -- Automatically install packer
 local fn = vim.fn
 local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
@@ -70,8 +58,11 @@ return packer.startup(function(use)
 
   -- Color schemes
   use 'navarasu/onedark.nvim'
+
   use 'tanvirtin/monokai.nvim'
   use { 'rose-pine/neovim', as = 'rose-pine' }
+  use 'Mofiqul/dracula.nvim'
+  use { "ellisonleao/gruvbox.nvim" }
 
   -- LSP
   use 'neovim/nvim-lspconfig'
@@ -265,14 +256,13 @@ use {
 
 use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 
--- Using Packer:
-use 'Mofiqul/dracula.nvim'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
   if packer_bootstrap then
     require('packer').sync()
   end
+
 end)
 
 
